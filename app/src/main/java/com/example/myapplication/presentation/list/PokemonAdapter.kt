@@ -19,21 +19,18 @@ class PokemonAdapter(private var dataSet: List<Pokemon>, var listener: ((Int) ->
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
         val imageView: ImageView
-            get() {
-                TODO()
-            }
 
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.pokemon_name)
-
+            imageView = view.findViewById(R.id.pokemon_img)
         }
     }
 
-     fun updateList(list: List<Pokemon>) {
-         dataSet = list
-         notifyDataSetChanged()
-     }
+    fun updateList(list: List<Pokemon>) {
+        dataSet = list
+        notifyDataSetChanged()
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -56,13 +53,16 @@ class PokemonAdapter(private var dataSet: List<Pokemon>, var listener: ((Int) ->
 
         Glide
                 .with(viewHolder.itemView.context)
-                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/${position + 1}.png")
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${position + 1}.png")
                 .centerCrop()
-                .into(viewHolder.imageView);
+                .into(viewHolder.imageView)
+
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount(): Int {
 
+        return dataSet.size
+    }
 }
+

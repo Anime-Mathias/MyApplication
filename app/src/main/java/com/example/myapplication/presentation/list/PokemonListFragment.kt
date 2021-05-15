@@ -24,8 +24,6 @@ class PokemonListFragment : Fragment() {
 
     private val adapter = PokemonAdapter(listOf(), ::onClickedPokemon)
 
-    private val sharedPref = activity?.getSharedPreferences("app", Context.MODE_PRIVATE)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,13 +51,13 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun getListFromCache(): List<Pokemon> {
-    //sharedPref
-        TODO("Not yet implemented")
 
+    //TODO
+        return emptyList()
     }
 
     private fun saveListIntoCache() {
-        TODO("Not yet implemented")
+
     }
 
 

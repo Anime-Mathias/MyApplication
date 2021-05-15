@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.presentation.Singletons
 import com.example.myapplication.presentation.api.PokemonDetailResponse
+import com.example.myapplication.presentation.api.PokemonListResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +21,6 @@ import retrofit2.Response
 class PokemonDetailFragment : Fragment() {
 
     private lateinit var textViewName: TextView
-
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -33,26 +33,31 @@ class PokemonDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textViewName = view.findViewById(R.id.pokemon_detail_name)
-
         callApi()
     }
-
     private fun callApi() {
         val id = arguments?.getInt("pokemonId") ?: -1
+
         Singletons.pokeApi.getPokemonDetail(id).enqueue(object : Callback<PokemonDetailResponse>{
-            override fun onFailure(call: Call<PokemonDetailResponse>,
-                                   t: Throwable)
-            {
+
+            override fun onFailure(
+                    call: Call<PokemonDetailResponse>,
+                    t: Throwable
+            ) {
 
             }
 
-            override fun onResponse(call: Call<PokemonDetailResponse>,
-                                    response: Response<PokemonDetailResponse>
-            ) {
+
+            override fun onResponse(
+                    call: Call<PokemonDetailResponse>,
+                    response: Response<PokemonDetailResponse>)
+
+             {
                 if(response.isSuccessful && response.body() != null) {
-                    textViewName.text = response.body()!!.namee
+                    textViewName.text = response.body()!!.name
                 }
             }
+
         })
     }
 }
