@@ -1,16 +1,15 @@
 package com.example.myapplication.presentation.list
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.presentation.PokeRepository
+import com.example.myapplication.data.PokeRepository
 import com.example.myapplication.presentation.Singletons
 import com.example.myapplication.presentation.api.PokemonListResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonListViewModel( val pokeRepository: PokeRepository) : ViewModel() {
+class PokemonListViewModel() : ViewModel() {
 
     val pokeList : MutableLiveData<PokemonModel> = MutableLiveData()
 
